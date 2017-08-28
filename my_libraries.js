@@ -106,5 +106,15 @@ Function.prototype.until = function(condition) {
   }
 };
 
+//eliminates all duplicate values from an array
+Array.prototype.removeDuplicates = function() {
+  return this.reduce(function(arr, element) {
+    if (!arr.includes(element)) {
+      return arr.pushIt(element);
+    } else {
+      return arr;
+    }
+  }, []);
+};
  
  
