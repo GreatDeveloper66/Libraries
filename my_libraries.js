@@ -116,5 +116,13 @@ Array.prototype.removeDuplicates = function() {
     }
   }, []);
 };
+
+//assumes this is an array of functions and calls each one in
+//succession.
+Array.prototype.callAll = function() {
+  this.forEach(function(fun) {
+    fun();
+  });
+};
  
  
