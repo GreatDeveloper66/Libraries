@@ -120,9 +120,22 @@ Array.prototype.removeDuplicates = function() {
 //assumes this is an array of functions and calls each one in
 //succession.
 Array.prototype.callAll = function() {
-  this.forEach(function(fun) {
-    fun();
-  });
+  //if
+  if (arguments.length === 0) {
+    this.forEach(function(fun) {
+      fun();
+    });
+  } else if (arguments.length === 1 && Array.isArray(arguments[0])) {
+    let args = arguments[0];
+    this.slice(0, args.length).forEach(function(fun, index) {
+      fun(args[index]);
+    });
+  } else {
+    //passed a list of individual arguments
+    let args = Array.from(arguments);
+    this.slice(0, arguments.length).forEach(function(fun, index) {
+      fun(args[index]);
+    });
+  }
 };
- 
  
