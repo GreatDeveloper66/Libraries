@@ -1,3 +1,4 @@
+
 var getRandomInt = function(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -138,4 +139,54 @@ Array.prototype.callAll = function() {
     });
   }
 };
- 
+
+Array.prototype.equals = function(toCompare) {
+  return (
+    this.length === toCompare.length &&
+    this.reduce(function(acc, el, index) {
+      return acc && el === toCompare[index];
+    }, true)
+  );
+};
+
+
+function Stack() {
+  this.top = null;
+  this.size = 0;
+}
+
+function Node(data) {
+  this.data = data;
+  this.previous = null;
+}
+
+Stack.prototype.push = function(data) {
+  var node = new Node(data);
+  node.previous = this.top;
+  this.top = node;
+  this.size += 1;
+  return this.top;
+};
+
+Stack.prototype.pop = function() {
+  var temp = this.top;
+  this.top = this.top.previous;
+  this.size -= 1;
+  return temp.data;
+};
+
+function Queue() {
+  this.data = [];
+  this.size = this.data.length;
+}
+
+Queue.prototype.enQueue = function(datam) {
+  this.data.push(datam);
+  this.size += 1;
+};
+
+Queue.prototype.deQueue = function() {
+  this.size -= 1;
+  return this.data.shift();
+};
+
