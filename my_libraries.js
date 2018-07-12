@@ -187,10 +187,10 @@ Stack.prototype.isEmpty = function() {
 };
 
 Stack.prototype.emptyStack = function() {
-  let current = this.top;
   while (!this.isEmpty()) {
     console.log(this.pop());
   }
+  return "End of Stack";
 };
 
 function Queue() {
@@ -224,4 +224,5 @@ Queue.prototype.emptyQueue = function(){
   while(!this.isEmpty()){
     console.log(this.deQueue());
   }
+  return "End of Queue";
 };
