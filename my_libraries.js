@@ -160,19 +160,36 @@ function Node(data) {
   this.previous = null;
 }
 
+function DNode(data) {
+  this.data = data;
+  this.previous = null;
+  this.next = null;
+}
+
 Stack.prototype.push = function(data) {
   var node = new Node(data);
   node.previous = this.top;
   this.top = node;
   this.size += 1;
-  return this.top;
 };
 
 Stack.prototype.pop = function() {
-  var temp = this.top;
-  this.top = this.top.previous;
-  this.size -= 1;
-  return temp.data;
+  if (this.size === 0) {
+    return null;
+  } else {
+    var temp = this.top;
+    this.top = this.top.previous;
+    this.size -= 1;
+    return temp.data;
+  }
+};
+
+Stack.prototype.topOfStack = function() {
+  return this.size === 0 ? null : this.top.data;
+};
+
+Stack.prototype.isEmpty = function() {
+  return this.size === 0;
 };
 
 function Queue() {
@@ -186,7 +203,20 @@ Queue.prototype.enQueue = function(datam) {
 };
 
 Queue.prototype.deQueue = function() {
-  this.size -= 1;
-  return this.data.shift();
+  this.size = Math.max(0, this.size - 1);
+  return this.size === 0 ? null : this.data.shift();
 };
+
+Queue.prototype.topOfQueue = function() {
+  return this.size === 0 ? null : this.data[0];
+};
+
+Queue.prototype.bottomOfQueue = function() {
+  return this.size === 0 ? null : this.data[this.data.length - 1];
+};
+
+Queue.prototype.isEmpty = function() {
+  return this.size === 0;
+};
+
 
