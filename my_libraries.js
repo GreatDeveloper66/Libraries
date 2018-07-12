@@ -160,12 +160,6 @@ function Node(data) {
   this.previous = null;
 }
 
-function DNode(data) {
-  this.data = data;
-  this.previous = null;
-  this.next = null;
-}
-
 Stack.prototype.push = function(data) {
   var node = new Node(data);
   node.previous = this.top;
@@ -192,9 +186,16 @@ Stack.prototype.isEmpty = function() {
   return this.size === 0;
 };
 
+Stack.prototype.emptyStack = function() {
+  let current = this.top;
+  while (!this.isEmpty()) {
+    console.log(this.pop());
+  }
+};
+
 function Queue() {
   this.data = [];
-  this.size = this.data.length;
+  this.size = 0;
 }
 
 Queue.prototype.enQueue = function(datam) {
@@ -203,8 +204,8 @@ Queue.prototype.enQueue = function(datam) {
 };
 
 Queue.prototype.deQueue = function() {
-  this.size = Math.max(0, this.size - 1);
-  return this.size === 0 ? null : this.data.shift();
+  this.size -=1;
+  return this.size < 0 ? null : this.data.shift();
 };
 
 Queue.prototype.topOfQueue = function() {
@@ -219,4 +220,8 @@ Queue.prototype.isEmpty = function() {
   return this.size === 0;
 };
 
-
+Queue.prototype.emptyQueue = function(){
+  while(!this.isEmpty()){
+    console.log(this.deQueue());
+  }
+};
